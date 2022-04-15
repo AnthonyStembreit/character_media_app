@@ -1,21 +1,21 @@
 
 import './App.css';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import {
   Routes,
   Route,
-  Link,
-  useNavigate,
   useLocation,
   Navigate,
-  Outlet,
 } from 'react-router-dom';
 import Layout from './Layout.js'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
 
-function RequireAuth({ children }: { children: JSX.Element }) {
+function RequireAuth({ children }) {
   const state = useSelector(state => state);
   let auth = state.auth
+  console.log(auth)
   let location = useLocation();
 
   if (!auth) {
