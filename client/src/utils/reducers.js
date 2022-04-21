@@ -10,20 +10,24 @@ const initialState = {
 }
 
 export const reducers = (state = initialState, action) => {
+   console.log(action)
     switch (action.type) {
         case LOGIN:
-            if (action.userData[0]) {
+            
+            if (action.payload) {
+                //action.userData[0]
                 return {
                     ...state,
                     auth: true,
-                    user: action.userData[0]
+                    user: action.payload
                 }
             } else {
 
                 return {
                     ...state,
                     auth: true,
-                    user: action.userData
+                    user: action.payload
+                    //action.userData
                 }
             }
 
