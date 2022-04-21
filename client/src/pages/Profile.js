@@ -7,7 +7,7 @@ export default function Profile(){
     return(
         <div>
             Profile
-            <h1>{state.user.name}</h1>
+            <h1>{state.user.username}</h1>
         </div>
     )
 }

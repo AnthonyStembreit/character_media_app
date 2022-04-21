@@ -1,6 +1,9 @@
 import React from "react";
 import { Link, Outlet } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { LOGOUT } from './utils/actions';
+import API from './utils/API';
+import { useDispatch } from 'react-redux';
 
 export default function Layout() {
     const state = useSelector(state => state);
