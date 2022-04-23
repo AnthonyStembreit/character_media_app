@@ -7,6 +7,16 @@ import { useDispatch } from 'react-redux';
 
 export default function Layout() {
     const state = useSelector(state => state);
+    const logoutUser = async () => {
+       const res = await  API.logout()
+       if(res.status===200){
+           useDispatch({
+               type: LOGOUT
+           })
+       }else{
+           console.log("something went wrong!")
+       }
+    }
     return (
         <div>
 
@@ -17,9 +27,9 @@ export default function Layout() {
                 <li>
                     <Link to="/profile">Profile</Link>
                 </li>
-                {state.auth 
-                ? <li><Link to="/logout">Logout</Link></li>
-                : <li><Link to="/">Login</Link></li>
+                {state.auth
+                    ? <li onClick={(e)=>{e.preventDefault(); logoutUser()}}><Link to="/logout">Logout</Link></li>
+                    : <li><Link to="/">Login</Link></li>
                 }
             </ul>
 
