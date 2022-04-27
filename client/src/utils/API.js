@@ -30,7 +30,17 @@ const API = {
     catch (error) {
       console.log(error)
     }
-
+  },
+  
+  check_status:async()=>{
+    try {
+      const res = await axios.post(`/api/user_data`)
+      console.log(res)
+      return res
+    }
+    catch (error) {
+      console.log(error)
+    }
   }
 }
 

@@ -9,7 +9,10 @@ import {
   Navigate,
 } from 'react-router-dom';
 import Layout from './Layout.js'
-import Login from './pages/Login'
+import Auth from './pages/Auth'
+import About from './pages/About'
+import MessageBoard from './pages/MessageBoard'
+import Search from './pages/Search'
 import Profile from './pages/Profile'
 
 function RequireAuth({ children }) {
@@ -31,27 +34,35 @@ function RequireAuth({ children }) {
 function App() {
   return (
     <Routes>
-    <Route element={<Layout />}>
-      <Route path="/" element={<Login/>} />
-      <Route path="/login" element={<Login/>} />
-      <Route
-        path="/profile"
-        element={
-          <RequireAuth>
-            <Profile />
-          </RequireAuth>
-        }
-      />
-      {/* <Route
-        path="/projects"
-        element={
-          <RequireAuth>
-            <ProjectsPage />
-          </RequireAuth>
-        }
-      /> */}
-    </Route>
-  </Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<About />} />
+        <Route path="/login" element={<Auth />} />
+        <Route
+          path="/profile"
+          element={
+            <RequireAuth>
+              <Profile />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/messages"
+          element={
+            <RequireAuth>
+              <MessageBoard />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            <RequireAuth>
+              <Search />
+            </RequireAuth>
+          }
+        />
+      </Route>
+    </Routes>
   );
 }
 

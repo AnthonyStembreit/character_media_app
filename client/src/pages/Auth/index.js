@@ -1,10 +1,10 @@
 import { React, useState } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
-import { LOGIN, SIGN_UP } from '../utils/actions';
-import API from '../utils/API';
+import { LOGIN, SIGN_UP } from '../../utils/actions';
+import API from '../../utils/API';
 import { useDispatch, useSelector } from 'react-redux';
 
-export default function Login() {
+export default function Auth() {
     const dispatch = useDispatch();
     let navigate = useNavigate();
     let location = useLocation();
