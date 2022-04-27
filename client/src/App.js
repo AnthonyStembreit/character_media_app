@@ -13,7 +13,7 @@ import Auth from './pages/Auth'
 import About from './pages/About'
 import MessageBoard from './pages/MessageBoard'
 import Search from './pages/Search'
-import Profile from './pages/Profile'
+import SingleUser from './pages/SingleUser'
 
 function RequireAuth({ children }) {
   const state = useSelector(state => state);
@@ -37,11 +37,11 @@ function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<About />} />
         <Route path="/login" element={<Auth />} />
-        <Route
-          path="/profile"
+         <Route
+          path="/:username"
           element={
             <RequireAuth>
-              <Profile />
+              <SingleUser />
             </RequireAuth>
           }
         />

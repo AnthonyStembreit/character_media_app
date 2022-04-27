@@ -5,8 +5,10 @@ import {
 } from "./actions";
 
 const initialState = {
-    auth: false,
-    user: {}
+    auth: true,
+    user: {
+        username: "test"
+    }
 }
 
 export const reducers = (state = initialState, action) => {
