@@ -24,6 +24,7 @@ export default function SingleUser() {
         }
         retrieveUser(username);
         //uncomment to see public profile
+        // setViewUser({ id: 1, username: "andybvb", img: "https://i.pinimg.com/474x/f1/d9/e1/f1d9e1e814bf8804b9ebd97c42675a0d.jpg", bio: "lead singer of Legacy Black", characters: [] })
         // setInteractionText("Message")
     }, [])
     return (
@@ -32,7 +33,7 @@ export default function SingleUser() {
                 <section id="user-header">
                     <img src={viewUser.img} />
                     <h2>@{viewUser.username}</h2>
-                    <button className="profile-btn">{interactionText}</button>
+                    <button className="profile-btn" value={viewUser.id} onClick={(e) => { e.preventDefault(); console.log(e.target.value, state.user.id) }}>{interactionText}</button>
                     <div id="background-line"></div>
                 </section>
                 <div id="profile-nav">
@@ -48,10 +49,11 @@ export default function SingleUser() {
                     :
                     <section className="profile-section" id="characters">
                         <h3>Characters</h3>
-                        <button className="profile-btn">Create +</button>
-                        <div>
-                            {/* map characters here */}
-                        </div>
+                        {interactionText === "Edit" ? <>
+                            <button className="profile-btn">Create +</button>
+                            {viewUser.characters.length ? <div>here are your characters!</div> : <p>You have not made any characters yet!</p>}
+                        </> : <> {viewUser.characters.length ? <div>here are your characters!</div> : <p>This user has not made any characters yet!</p>}</>
+                        }
                     </section>
                 }
 

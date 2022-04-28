@@ -7,10 +7,11 @@ import {
 const initialState = {
     auth: true,
     user: {
+        id: 2,
         username: "test",
         img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbBpAnjzhX3OtbT_voeJHVpalKyECOyNOLA&usqp=CAU",
-        bio: "Consequat anim officia ipsum consectetur commodo. Commodo aute et et cupidatat. Irure voluptate cillum culpa ullamco quis ex magna consectetur. Minim consequat id Lorem incididunt elit veniam sint cupidatat duis enim eu pariatur anim. Mollit adipisicing dolore velit cupidatat proident ad nostrud laborum commodo do esse. Exercitation velit elit aliqua enim."  
-
+        bio: "Consequat anim officia ipsum consectetur commodo. Commodo aute et et cupidatat. Irure voluptate cillum culpa ullamco quis ex magna consectetur. Minim consequat id Lorem incididunt elit veniam sint cupidatat duis enim eu pariatur anim. Mollit adipisicing dolore velit cupidatat proident ad nostrud laborum commodo do esse. Exercitation velit elit aliqua enim.",
+        characters: []       
     }
 }
 
