@@ -27,28 +27,32 @@ export default function SingleUser() {
         // setInteractionText("Message")
     }, [])
     return (
-        <main id= "user-profile-containter">
+        <main id="user-profile-containter">
             {viewUser ? <>
                 <section id="user-header">
                     <img src={viewUser.img} />
                     <h2>@{viewUser.username}</h2>
-                    <button>{interactionText}</button>
+                    <button className="profile-btn">{interactionText}</button>
                     <div id="background-line"></div>
                 </section>
                 <div id="profile-nav">
                     <div id="congruent-border"></div>
-                    <button className={activeProfileSection === 'Bio'? 'active': ''} onClick={(e)=> {e.preventDefault(); setActiveProfileSection("Bio")}}>Bio</button>
-                    <button className={activeProfileSection === 'Characters'? 'active': ''} onClick={(e)=> {e.preventDefault(); setActiveProfileSection("Characters")}}>Characters</button>
+                    <button className={activeProfileSection === 'Bio' ? 'active' : ''} onClick={(e) => { e.preventDefault(); setActiveProfileSection("Bio") }}>Bio</button>
+                    <button className={activeProfileSection === 'Characters' ? 'active' : ''} onClick={(e) => { e.preventDefault(); setActiveProfileSection("Characters") }}>Characters</button>
                 </div>
-                {activeProfileSection === "Bio"?
-                <section  className="profile-section" id="bio">
-                    bio
-                </section>
-                :
-                <section className="profile-section" id="characters">
-                    characters
-                    {/* map characters here */}
-                </section>
+                {activeProfileSection === "Bio" ?
+                    <section className="profile-section" id="bio">
+                        <h3>Bio</h3>
+                        <p>{viewUser.bio}</p>
+                    </section>
+                    :
+                    <section className="profile-section" id="characters">
+                        <h3>Characters</h3>
+                        <button className="profile-btn">Create +</button>
+                        <div>
+                            {/* map characters here */}
+                        </div>
+                    </section>
                 }
 
             </> : <div>Sorry, no user with that username</div>}
