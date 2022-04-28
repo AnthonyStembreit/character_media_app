@@ -11,7 +11,7 @@ Character.init(
             allowNull: false,
         },
         characterAge:{
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         characterClass:{

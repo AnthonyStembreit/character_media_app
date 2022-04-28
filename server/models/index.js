@@ -13,7 +13,7 @@ Character.hasMany(Message)
 // sender
 Character.hasMany(Message)
 // receiver
-Character.belongsTo(User)
+// Character.belongsTo(User)
 // Message.belongsToMany(User)
 // Message.belongsToMany(Character)
 
