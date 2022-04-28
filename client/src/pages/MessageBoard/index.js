@@ -17,12 +17,19 @@ export default function MessageBoard() {
     return (
         <section id="message-board">
             <aside id="conversations">
+                <div>
+                    <p>You are current looking at ... Message Board</p>
+                    <p>You can switch Message Boards here:</p>
+                    <select>
+                        {/* map <option>{name{</option> --username, then their character names here */}
+                    </select>
+                </div>
                 {/* future dev set up a way to search messages here */}
-
+                {/*map Conversation components here */}
             </aside>
             <main>
                 <div id="current-messages">
-
+                    {/*map Message components here */}
                 </div>
                 <form id="message-form" onSubmit={(e) => handleMessage(e)}>
                     <textarea placeholder="message" id="usersMsg"></textarea>
