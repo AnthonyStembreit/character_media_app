@@ -2,13 +2,13 @@
 //else className="theirMsg" color y float left
 import React from 'react';
 import { useSelector } from 'react-redux';
-
+import './message.css'
 export default function Message(props) {
     const state = useSelector(state => state);
     return (
-        <div className={props.user.id === state.user.id ? "myMsg": "theirMsg"}>
-            <p>{props.message}</p>
-            <p>{props.createdAt}</p>
+        <div className={props.user.id === state.user.id ? "myMsg msgCard": "theirMsg msgCard"}>
+            <p className="msgText">{props.message}</p>
+            <p className="msgTime">{props.createdAt}</p>
         </div>
     )
 }

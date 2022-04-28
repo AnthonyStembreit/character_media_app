@@ -1,0 +1,21 @@
+.myMsg {
+    justify-content: flex-end;
+    background-color: rgb(182, 204, 255);
+}
+
+.theirMsg {
+    justify-content: flex-end;
+    background-color: lightgreen;
+    flex-direction: row-reverse;
+}
+
+.msgCard {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.msgTime {
+    font-size: 12px;
+    margin: 5px;
+}
