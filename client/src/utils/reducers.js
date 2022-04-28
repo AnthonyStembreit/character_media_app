@@ -7,7 +7,8 @@ import {
 const initialState = {
     auth: true,
     user: {
-        username: "test"
+        username: "test",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbBpAnjzhX3OtbT_voeJHVpalKyECOyNOLA&usqp=CAU"
     }
 }
 
