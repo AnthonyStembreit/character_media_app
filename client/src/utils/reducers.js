@@ -5,7 +5,7 @@ import {
 } from "./actions";
 
 const initialState = {
-    auth: true,
+    auth: false,
     user: {
         id: 2,
         username: "test",
@@ -21,7 +21,7 @@ const initialState = {
             {
                 users: [{ id: 3, img: "https://data.whicdn.com/images/265171376/original.jpg", username: "Gee" }],
                 id: 2,
-                messages: [{ id: 4, user: { id: 3 }, message: "Hey,", createdAt: "11:00AM" }, { id: 5, user: { id: 3 }, message: "Did you wanna fuck tonight!", createdAt: "11:32AM" }, { id: 6, user: { id: 2 }, message: "omg", createdAt: "11:40AM" }]
+                messages: [{ id: 4, user: { id: 3 }, message: "Hey,", createdAt: "11:00AM" }, { id: 5, user: { id: 3 }, message: "Do you wanna fuck tonight!", createdAt: "11:32AM" }, { id: 6, user: { id: 2 }, message: "omg", createdAt: "11:40AM" }]
             }
         ]    
     }

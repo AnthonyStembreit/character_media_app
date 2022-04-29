@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { LOGIN, SIGN_UP } from '../../utils/actions';
 import API from '../../utils/API';
 import { useDispatch, useSelector } from 'react-redux';
-
+import './auth.css'
 export default function Auth() {
     const dispatch = useDispatch();
     let navigate = useNavigate();
@@ -54,23 +54,27 @@ export default function Auth() {
     }
 
     return (
-        <div>
+        <div id="authPg">
             {loginFormStatus ? <h2>Login</h2> : <h2>Sign-up</h2>}
             <form>
+                <div>
                 <label htmlFor="email">Email</label>
                 <input type="text" id="email" />
-                {!loginFormStatus ? <>
+                </div>
+                {!loginFormStatus ? <div>
                     <label htmlFor="username">Username</label>
                     <input type="text" id="username" />
-                </> : ""}
+                </div> : ""}
+                <div>
                 <label htmlFor="password">Password</label>
                 <input type="password" id="password" />
-                {!loginFormStatus ? <>
+                </div>
+                {!loginFormStatus ? <div>
                     <label htmlFor="confirm-pass">Confirm Password</label>
                     <input type="password" id="confirm-pass" />
-                </> : ""}
+                </div> : ""}
                 <button onSubmit={(e) => formSubmit(e)}>Submit</button>
-                {loginFormStatus ? <button onClick={(e) => { e.preventDefault(); setLoginFormStatus(false) }}>sign-up?</button> : <button onClick={(e) => { e.preventDefault(); setLoginFormStatus(true) }}>log-in?</button>}
+                {loginFormStatus ? <a onClick={(e) => { e.preventDefault(); setLoginFormStatus(false) }}>sign-up?</a> : <a onClick={(e) => { e.preventDefault(); setLoginFormStatus(true) }}>log-in?</a>}
             </form>
         </div>
     )
