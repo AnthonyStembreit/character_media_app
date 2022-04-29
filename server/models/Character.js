@@ -4,12 +4,7 @@ class Character extends Model {}
 
 Character.init(
     {
-        id:{
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-            allowNull: false
-        },
+        
         characterName:{
             type: DataTypes.STRING,
             allowNull: false,
