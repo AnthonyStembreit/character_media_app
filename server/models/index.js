@@ -16,3 +16,5 @@ Character.hasMany(Message)
 Character.belongsTo(User)
 Message.belongsToMany(User)
 Message.belongsToMany(Character)
+
+module.exports = {User, Character, Message};

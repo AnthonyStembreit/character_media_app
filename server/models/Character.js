@@ -22,6 +22,14 @@ Character.init(
             allowNull: true
 
         },
+        firstName:{
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        lastName:{
+            type: DataTypes.STRING,
+            allowNull: true
+        },
         franchise:{
             type: DataTypes.STRING,
             allowNull: true
