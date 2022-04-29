@@ -14,7 +14,7 @@ Character.hasMany(Message)
 Character.hasMany(Message)
 // receiver
 Character.belongsTo(User)
-Message.belongsToMany(User)
-Message.belongsToMany(Character)
+// Message.belongsToMany(User)
+// Message.belongsToMany(Character)
 
 module.exports = {User, Character, Message};

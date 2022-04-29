@@ -18,7 +18,7 @@ app.use(session({ secret: process.env.SECRET, resave: true, saveUninitialized: t
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(require('./routes'));
+// app.use(require('./routes'));
 
 app.listen(PORT, () => {
    sequelize.sync({ force: false }).then(() => {
