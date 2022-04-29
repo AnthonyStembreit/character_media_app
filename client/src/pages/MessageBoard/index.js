@@ -7,19 +7,8 @@ import Message from "../../components/Message";
 export default function MessageBoard() {
     const state = useSelector(state => state);
     console.log(state.auth)
-    let conversations = [
-        {
-            users: [{ id: 1, img: "https://i.pinimg.com/474x/f1/d9/e1/f1d9e1e814bf8804b9ebd97c42675a0d.jpg", username: "andybvb" }],
-            id: 1,
-            messages: [{ id: 1, user: { id: 1 }, message: "Hey", createdAt: "8:00AM" }, { id: 2, user: { id: 1 }, message: "Did you want to get dinner tonight?", createdAt: "8:02AM" }, { id: 3, user: { id: 2 }, message: "sure, why not?", createdAt: "8:05AM" }]
-        }
-    ]
     //might want to make this a global state in redux
-    const [activeConversation, setActiveConversation] = useState({
-        users: [{ id: 1, img: "https://i.pinimg.com/474x/f1/d9/e1/f1d9e1e814bf8804b9ebd97c42675a0d.jpg", username: "andybvb" }],
-        id: 1,
-        messages: [{ id: 1, user: { id: 1 }, message: "Hey", createdAt: "8:00AM" }, { id: 2, user: { id: 1 }, message: "Did you want to get dinner tonight?", createdAt: "8:02AM" }, { id: 3, user: { id: 2 }, message: "sure, why not?", createdAt: "8:05AM" }]
-    })
+    const [activeConversation, setActiveConversation] = useState(state.user.conversations[0])
     const handleMessage = async (e) => {
         e.preventDefault();
         let message = e.target.previousSibling.value
@@ -32,6 +21,8 @@ export default function MessageBoard() {
     useEffect(() => {
         //call axios here to retrieve users conversations
     }, [])
+    const changeMessagesPresented = (newConversation) => setActiveConversation(newConversation)
+
     return (
         <section id="message-board">
             <aside id="conversations">
@@ -44,14 +35,15 @@ export default function MessageBoard() {
                 </div>
                 {/* future dev set up a way to search messages here */}
                 {/*map Conversation components here -10 at first then 'load all' button)*/}
-                {conversations.map(conversation => {
+                {state.user.conversations.map(conversation => {
                     return <Conversation users={conversation.users}
-                        id={conversation.id} />
+                        id={conversation.id}
+                        activeid={activeConversation.id}
+                        changeMessagesPresented={changeMessagesPresented} />
                 })}
             </aside>
             <main>
                 <div id="current-messages">
-                    {/*active chat img & username*/}
                     {/*map Message components here */}
                     {activeConversation.messages.map(message =>{
                         return <Message user={message.user} message={message.message} createdAt={message.createdAt}/>
