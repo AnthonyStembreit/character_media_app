@@ -25,8 +25,8 @@ export default function SingleUser() {
         }
         retrieveUser(username);
         //uncomment to see public profile
-        // setViewUser({ id: 1, username: "andybvb", img: "https://i.pinimg.com/474x/f1/d9/e1/f1d9e1e814bf8804b9ebd97c42675a0d.jpg", bio: "lead singer of Legacy Black", characters: [] })
-        // setInteractionText("Message")
+        setViewUser({ id: 1, username: "andybvb", img: "https://i.pinimg.com/474x/f1/d9/e1/f1d9e1e814bf8804b9ebd97c42675a0d.jpg", bio: "lead singer of Legacy Black", characters: [] })
+        setInteractionText("Message")
         //TODO when message is hit and you are messaging someone for the first time use modal on this page
     }, [])
     const interactBtnHandler= (e)=>{
@@ -44,6 +44,7 @@ export default function SingleUser() {
         console.log(sendersId, recipientId, message)
         //call axios here to create new message
         //alert msg has been 'sent'
+        document.getElementById("firstMsgInput").value =""
         interactBtnHandler(e)
     }
     return (
@@ -61,7 +62,7 @@ export default function SingleUser() {
                         <div id="thisUser">         
                             <img src={viewUser.img} />
                             <h2>@{viewUser.username}</h2>
-                            <p>Send @{viewUser.username} a message about one of their characters, one of yours, topics you interested in roleplaying!!</p>
+                            <p>Send @{viewUser.username} a message about one of their characters, one of yours, topics you are interested in roleplaying!!</p>
                         </div>
                         <form onSubmit={(e)=>{firstMessageFormHandler(e)}}>
                             <input id="newPersonId" type="hidden" value={viewUser.id} />

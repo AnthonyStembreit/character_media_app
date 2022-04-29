@@ -5,7 +5,7 @@ import {
 } from "./actions";
 
 const initialState = {
-    auth: false,
+    auth: true,
     user: {
         id: 2,
         username: "test",

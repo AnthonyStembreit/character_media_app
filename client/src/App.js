@@ -15,6 +15,7 @@ import MessageBoard from './pages/MessageBoard'
 import Search from './pages/Search'
 import SingleUser from './pages/SingleUser'
 import ForgotPassword from './pages/ForgotPassword/index.js';
+import ResetPassword from './pages/ResetPassword/index.js';
 
 function RequireAuth({ children }) {
   const state = useSelector(state => state);
@@ -40,6 +41,7 @@ function App() {
         <Route path="/login" element={<Auth />} />
         <Route path="/signup" element={<Auth />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
          <Route
           path="/:username"
           element={
