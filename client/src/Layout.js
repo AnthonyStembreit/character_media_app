@@ -45,7 +45,7 @@ export default function Layout() {
                             <li><Link to="/search">Search</Link></li>
                             <li><Link to={"/" + state.user.username}>Profile</Link></li>
                             <li><Link to="/messages">Messages</Link></li>
-                            <li onClick={(e) => { e.preventDefault(); logoutUser() }}><Link to="/logout">Logout</Link></li>
+                            <li onClick={(e) => { e.preventDefault(); logoutUser() }}><Link to="/">Logout</Link></li>
                         </>
                         : <li><Link to="/login">Login</Link></li>
                     }

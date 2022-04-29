@@ -12,7 +12,7 @@ export default function MessageBoard() {
     const handleMessage = async (e) => {
         e.preventDefault();
         let message = e.target.previousSibling.value
-        console.log(message)
+        console.log(message, activeConversation.users[0].id, state.user.id)
         document.getElementById("usersMsg").value = ""
         //console.log(state.user.id)
         //TODO find a way to figure out reciever's user id

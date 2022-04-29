@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { LOGIN, SIGN_UP } from '../../utils/actions';
 import API from '../../utils/API';
 import { useDispatch, useSelector } from 'react-redux';
@@ -74,7 +74,10 @@ export default function Auth() {
                     <input type="password" id="confirm-pass" />
                 </div> : ""}
                 <button onSubmit={(e) => formSubmit(e)}>Submit</button>
+                <div id="authLinks">
                 {loginFormStatus ? <a onClick={(e) => { e.preventDefault(); setLoginFormStatus(false) }}>sign-up?</a> : <a onClick={(e) => { e.preventDefault(); setLoginFormStatus(true) }}>log-in?</a>}
+                <Link to="/forgot-password">forgot password?</Link>
+                </div>
             </form>
         </div>
     )
