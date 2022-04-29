@@ -5,16 +5,24 @@ const Character = require('./Character')
 const Message = require('./Message')
 
 User.hasMany(Character)
-User.hasMany(Message) 
 // sender
-User.hasMany(Message)
+User.hasMany(Message, {
+    foreignKey: 'sender_id'
+}) 
 // receiver
+User.hasMany(Message, {
+    foreignKey: 'recipient_id'
+})
+Message.belongsTo(User, {
+    foreignKey: 'sender_id'
+})
+
+// Will have to research more on how to allow messages to belong to characters as well
 Character.hasMany(Message)
 // sender
 Character.hasMany(Message)
 // receiver
 Character.belongsTo(User)
-// Message.belongsToMany(User)
-// Message.belongsToMany(Character)
+// Message.belongsTo(Character)
 
 module.exports = {User, Character, Message};
