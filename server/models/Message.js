@@ -13,10 +13,23 @@ Message.init(
               len: [1],
             },
           },
-        //   sender
-        // recipient
+          sender_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+              model: 'user',
+              key: 'id',
+      },
+          },
+          recipient_id:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+              model: 'user',
+              key: 'id',
+            },
+          }
         // has read?
-        
     },
     {
         // hooks
