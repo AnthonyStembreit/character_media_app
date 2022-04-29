@@ -50,7 +50,7 @@ export default function MessageBoard() {
                     })}
                 </div>
                 <form id="message-form" onSubmit={(e) => handleMessage(e)}>
-                    <textarea placeholder="message" id="usersMsg"></textarea>
+                    <textarea  id="usersMsg"></textarea>
                     <button onClick={(e) => handleMessage(e)}>Send</button>
                 </form>
             </main>

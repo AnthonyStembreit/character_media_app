@@ -6,12 +6,11 @@ export default function Search() {
     const state = useSelector(state => state);
     console.log(state.auth)
     const searchUsers = async (searched) => {
-        const { username, img, bio } = API.get_one_user(searched)
+        const { username, img} = API.get_one_user(searched)
         //is this enough or should I create a user card?? 
         let user = `<div>
-       <img src=${img}/>
-       <h3>${username}</h3>
-       <p>${bio}</p>
+       <img src="${img}"/>
+       <a href="http://localhost:3000/${username}">${username}</a>
        </div>`
        document.getElementById("results"). innerHTML = user
     }
