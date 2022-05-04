@@ -1,5 +1,5 @@
 import axios from 'axios';
-axios.defaults.proxy = "http://localhost:3001"
+// axios.defaults.proxy = "http://localhost:3001"
 const API = {
   signup: async (creds) => {
     try {
@@ -44,7 +44,7 @@ const API = {
   },
   get_one_user: async (username) => {
     try {
-      const res = await axios.post(`/api/users/${username}`)
+      const res = await axios.post(`/api/users/`, username)
       console.log(res)
       return res
     }

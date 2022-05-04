@@ -9,7 +9,8 @@ export default function Layout() {
     const dispatch = useDispatch();
     const state = useSelector(state => state);
     const logoutUser = async () => {
-        const res = await API.logout()
+        let res = await API.logout()
+        res= {status:200}
         if (res.status === 200) {
             dispatch({
                 type: LOGOUT
@@ -43,7 +44,7 @@ export default function Layout() {
                     {state.auth
                         ? <>
                             <li><Link to="/search">Search</Link></li>
-                            <li><Link to={"/" + state.user.username}>Profile</Link></li>
+                            <li><Link to={"/" + state.user?.username}>Profile</Link></li>
                             <li><Link to="/messages">Messages</Link></li>
                             <li onClick={(e) => { e.preventDefault(); logoutUser() }}><Link to="/">Logout</Link></li>
                         </>

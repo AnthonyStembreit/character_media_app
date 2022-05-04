@@ -6,6 +6,7 @@ import './user.css'
 
 export default function SingleUser() {
     const state = useSelector(state => state);
+    console.log(state.user)
     let { username } = useParams()
     const [viewUser, setViewUser] = useState()
     const [interactionText, setInteractionText] = useState("Edit")
@@ -13,6 +14,7 @@ export default function SingleUser() {
     const [showMsgForm, setShowMsgForm] = useState(false)
     useEffect(() => {
         const retrieveUser = async (username) => {
+            console.log(state.user.username , username)
             if (state.user.username === username) {
                 setViewUser(state.user)
             } else {
@@ -25,8 +27,8 @@ export default function SingleUser() {
         }
         retrieveUser(username);
         //uncomment to see public profile
-        setViewUser({ id: 1, username: "andybvb", img: "https://i.pinimg.com/474x/f1/d9/e1/f1d9e1e814bf8804b9ebd97c42675a0d.jpg", bio: "lead singer of Legacy Black", characters: [] })
-        setInteractionText("Message")
+        // setViewUser({ id: 1, username: "andybvb", img: "https://i.pinimg.com/474x/f1/d9/e1/f1d9e1e814bf8804b9ebd97c42675a0d.jpg", bio: "lead singer of Legacy Black", characters: [] })
+        // setInteractionText("Message")
         //TODO when message is hit and you are messaging someone for the first time use modal on this page
     }, [])
     const interactBtnHandler= (e)=>{
@@ -79,7 +81,7 @@ export default function SingleUser() {
                 {activeProfileSection === "Bio" ?
                     <section className="profile-section" id="bio">
                         <h3>Bio</h3>
-                        <p>{viewUser.bio}</p>
+                       <p>{viewUser.bio}</p> 
                     </section>
                     :
                     <section className="profile-section" id="characters">
