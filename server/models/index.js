@@ -3,6 +3,7 @@
 const User = require('./User')
 const Character = require('./Character')
 const Message = require('./Message')
+const ResetToken = require('./ResetToken')
 
 User.hasMany(Character)
 // sender
@@ -25,4 +26,4 @@ Character.hasMany(Message)
 Character.belongsTo(User)
 // Message.belongsTo(Character)
 
-module.exports = {User, Character, Message};
+module.exports = {User, Character, Message, ResetToken};
