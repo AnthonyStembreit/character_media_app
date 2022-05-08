@@ -46,6 +46,7 @@ router.get("/api/user_data", function (req, res) {
 });
 
 router.post("/api/user/forgot-password", async function (req, res) {
+  console.log( req.body.email)
   const user = await User.findOne({
     where: {
       email: req.body.email
