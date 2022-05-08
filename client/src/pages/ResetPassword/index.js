@@ -23,14 +23,22 @@ export default function ResetPassword() {
         }
         validateToken()
     }, [])
-    const handleResetPassword = (e) => {
+    const handleResetPassword = async (e) => {
         e.preventDefault();
         const newPass = document.getElementById("newPassword").value.trim()
         const confirmPass = document.getElementById("confirmPassword").value.trim()
         if (newPass && confirmPass) {
             if (newPass === confirmPass) {
                 console.log(newPass, params.email)
-                //axios call here
+                let user = {
+                    email: params.email,
+                    token: params.token,
+                    password: newPass
+                }
+               const res = await API.update_password(user)
+                    if(res.status === 200){
+                        alert("password has been changed")
+                    }
             } else {
                 alert("Passwords must match!")
             }

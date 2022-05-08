@@ -128,7 +128,7 @@ router.post("/api/user/validate-token", async function (req, res) {
 });
 //updates the user with the new password
 router.post('/api/user/update-password', async function (req, res) {
-  let user = req.body.userRecord
+  let user = req.body
   //checks to make sure the token has not expired
   let record = await ResetToken.findOne({
       where: {
