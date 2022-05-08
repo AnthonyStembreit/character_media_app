@@ -1,4 +1,4 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import { Link, Outlet } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { LOGOUT, LOGIN } from './utils/actions';
@@ -8,9 +8,10 @@ import './App.css';
 export default function Layout() {
     const dispatch = useDispatch();
     const state = useSelector(state => state);
+    const [loading, setLoading] = useState(true)
     const logoutUser = async () => {
         let res = await API.logout()
-        res= {status:200}
+        res = { status: 200 }
         if (res.status === 200) {
             dispatch({
                 type: LOGOUT
@@ -19,21 +20,19 @@ export default function Layout() {
             console.log("something went wrong!")
         }
     }
-    // useEffect(() => {
-    //     let verifyUser = async () => {
-    //         let res = await API.check_status()
-    //         if (res?.status === 200) {
-    //             dispatch({
-    //                 type: LOGIN,
-    //                 payload: res.data
-    //             });
-    //         } else {
-    //             alert("something went wrong!")
-    //         }
-
-    //     }
-    //      verifyUser()
-    //    }, [])
+    useEffect(() => {
+        let verifyUser = async () => {
+            let res = await API.check_status()
+            if (res?.status === 200) {
+                dispatch({
+                    type: LOGIN,
+                    payload: res.data
+                });
+            }
+            setLoading(false)
+        }
+        verifyUser()
+    }, [])
     return (
         <div id="layout-container">
             <nav>
@@ -52,8 +51,7 @@ export default function Layout() {
                     }
                 </ul>
             </nav>
-
-            <Outlet />
+            {loading ? <p>Loading...</p> : <Outlet />}
         </div>
     );
 }

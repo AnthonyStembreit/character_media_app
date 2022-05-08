@@ -39,12 +39,9 @@ router.get("/api/logout", function (req, res) {
 });
 router.get("/api/user_data", function (req, res) {
   if (!req.user) {
-    res.json({});
+    res.status(404).json({});
   } else {
-    res.json({
-      email: req.user.email,
-      name: req.user.name
-    });
+    res.json(req.user);
   }
 });
 

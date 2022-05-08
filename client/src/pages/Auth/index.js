@@ -15,12 +15,14 @@ export default function Auth() {
         e.preventDefault();
         if (loginFormStatus) {
             const creds = {
-                email: document.getElementById("email").value.trim(),
+                username: document.getElementById("email").value.trim(),
                 password: document.getElementById("password").value.trim()
             }
 
             const axiosres = await API.login(creds)
+            console.log(axiosres)
             if (axiosres.status === 200) {
+                console.log("hit")
                 dispatch({
                     type: LOGIN,
                     payload: axiosres.data
