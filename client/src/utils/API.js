@@ -42,6 +42,36 @@ const API = {
       console.log(error)
     }
   },
+  send_email: async (email) => {
+    try {
+      const res = await axios.post(`/api/user/forgot-password`, email)
+      console.log(res)
+      return res
+    }
+    catch (error) {
+      console.log(error)
+    }
+  },
+  validate_token: async (token) => {
+    try {
+      const res = await axios.post(`/api/user/validate-token`, token)
+      console.log(res)
+      return res
+    }
+    catch (error) {
+      console.log(error)
+    }
+  },
+  update_password: async (creds) => {
+    try {
+      const res = await axios.post(`/api/user/update-password`, creds)
+      console.log(res)
+      return res
+    }
+    catch (error) {
+      console.log(error)
+    }
+  },
   // get_one_user: async (username) => {
   //   try {
   //     const res = await axios.post(`/api/users/`, username)
