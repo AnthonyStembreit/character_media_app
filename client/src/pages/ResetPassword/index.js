@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import API from '../../utils/API';
 
 export default function ResetPassword() {
     const state = useSelector(state => state);
@@ -14,8 +15,11 @@ export default function ResetPassword() {
     useEffect(() => {
         const validateToken = async () => {
             console.log(params)
-            //  let res = await axios call here
-            //if(res.status === 200){ setValidToken(true)}
+            let res = await API.validate_token(params)
+
+            if (res.data.showForm === true) {
+                setValidToken(true)
+            }
         }
         validateToken()
     }, [])
@@ -36,17 +40,17 @@ export default function ResetPassword() {
     }
     return (
         <div>
-            {validToken ? <>
-                <h2>Password Reset</h2>
-                <form onSubmit={(e) => { handleResetPassword(e) }}>
-                    <label htmlFor="newPassword">Password</label>
-                    <input id="newPassword" />
-                    <label htmlFor="confirmPassword">Confirm Password</label>
-                    <input id="confirmPassword" />
-                    <button>Reset Password</button>
-                </form>
-            </>
-                : <p>Your Token Has Expired!<br />Try again <Link to="/forgot-password">here</Link> or <Link to="/login">login</Link></p>
+            {!validToken ? <p>Your Token Has Expired!<br />Try again <Link to="/forgot-password">here</Link> or <Link to="/login">login</Link></p> 
+               : <>
+                    <h2>Password Reset</h2>
+                    <form onSubmit={(e) => { handleResetPassword(e) }}>
+                        <label htmlFor="newPassword">Password</label>
+                        <input id="newPassword" />
+                        <label htmlFor="confirmPassword">Confirm Password</label>
+                        <input id="confirmPassword" />
+                        <button>Reset Password</button>
+                    </form>
+                </>
             }
         </div>
     )
