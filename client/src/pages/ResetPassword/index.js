@@ -1,0 +1,53 @@
+import { React, useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+export default function ResetPassword() {
+    const state = useSelector(state => state);
+    const [validToken, setValidToken] = useState(false)
+    console.log(state.auth)
+    let paramArr = window.location.href.split('?token=')[1].split('&email=');
+    let params = {
+        token: decodeURIComponent(paramArr[0]),
+        email: paramArr[1]
+    };
+    useEffect(() => {
+        const validateToken = async () => {
+            console.log(params)
+            //  let res = await axios call here
+            //if(res.status === 200){ setValidToken(true)}
+        }
+        validateToken()
+    }, [])
+    const handleResetPassword = (e) => {
+        e.preventDefault();
+        const newPass = document.getElementById("newPassword").value.trim()
+        const confirmPass = document.getElementById("confirmPassword").value.trim()
+        if (newPass && confirmPass) {
+            if (newPass === confirmPass) {
+                console.log(newPass, params.email)
+                //axios call here
+            } else {
+                alert("Passwords must match!")
+            }
+        } else {
+            alert("Must confirm password!")
+        }
+    }
+    return (
+        <div>
+            {validToken ? <>
+                <h2>Password Reset</h2>
+                <form onSubmit={(e) => { handleResetPassword(e) }}>
+                    <label htmlFor="newPassword">Password</label>
+                    <input id="newPassword" />
+                    <label htmlFor="confirmPassword">Confirm Password</label>
+                    <input id="confirmPassword" />
+                    <button>Reset Password</button>
+                </form>
+            </>
+                : <p>Your Token Has Expired!<br />Try again <Link to="/forgot-password">here</Link> or <Link to="/login">login</Link></p>
+            }
+        </div>
+    )
+}

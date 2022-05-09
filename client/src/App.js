@@ -1,5 +1,5 @@
 
-import './App.css';
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import {
@@ -9,8 +9,13 @@ import {
   Navigate,
 } from 'react-router-dom';
 import Layout from './Layout.js'
-import Login from './pages/Login'
-import Profile from './pages/Profile'
+import Auth from './pages/Auth'
+import About from './pages/About'
+import MessageBoard from './pages/MessageBoard'
+import Search from './pages/Search'
+import SingleUser from './pages/SingleUser'
+import ForgotPassword from './pages/ForgotPassword/index.js';
+import ResetPassword from './pages/ResetPassword/index.js';
 
 function RequireAuth({ children }) {
   const state = useSelector(state => state);
@@ -31,27 +36,38 @@ function RequireAuth({ children }) {
 function App() {
   return (
     <Routes>
-    <Route element={<Layout />}>
-      <Route path="/" element={<Login/>} />
-      <Route path="/login" element={<Login/>} />
-      <Route
-        path="/profile"
-        element={
-          <RequireAuth>
-            <Profile />
-          </RequireAuth>
-        }
-      />
-      {/* <Route
-        path="/projects"
-        element={
-          <RequireAuth>
-            <ProjectsPage />
-          </RequireAuth>
-        }
-      /> */}
-    </Route>
-  </Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<About />} />
+        <Route path="/login" element={<Auth />} />
+        <Route path="/signup" element={<Auth />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+         <Route
+          path="/:username"
+          element={
+            <RequireAuth>
+              <SingleUser />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/messages"
+          element={
+            <RequireAuth>
+              <MessageBoard />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            <RequireAuth>
+              <Search />
+            </RequireAuth>
+          }
+        />
+      </Route>
+    </Routes>
   );
 }
 
