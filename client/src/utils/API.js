@@ -72,16 +72,16 @@ const API = {
       console.log(error)
     }
   },
-  // get_one_user: async (username) => {
-  //   try {
-  //     const res = await axios.post(`/api/users/`, username)
-  //     console.log(res)
-  //     return res
-  //   }
-  //   catch (error) {
-  //     console.log(error)
-  //   }
-  // }
+  get_one_user: async (username) => {
+    try {
+      const res = await axios.post(`/api/users/`, username)
+      console.log(res)
+      return res
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
 }
 
 

@@ -16,6 +16,8 @@ import Search from './pages/Search'
 import SingleUser from './pages/SingleUser'
 import ForgotPassword from './pages/ForgotPassword/index.js';
 import ResetPassword from './pages/ResetPassword/index.js';
+import EditPage from './pages/EditPage/index.js';
+import CharacterForm from './components/CharacterForm/index.js';
 
 function RequireAuth({ children }) {
   const state = useSelector(state => state);
@@ -42,7 +44,7 @@ function App() {
         <Route path="/signup" element={<Auth />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
-         <Route
+        <Route
           path="/:username"
           element={
             <RequireAuth>
@@ -63,6 +65,31 @@ function App() {
           element={
             <RequireAuth>
               <Search />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/character-create"
+          element={
+            <RequireAuth>
+              <CharacterForm edit={false} />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/character/edit/:id"
+          element={
+            <RequireAuth>
+              <EditPage editType="Character" />
+            </RequireAuth>
+          }
+        />
+
+        <Route
+          path="/edit/:id"
+          element={
+            <RequireAuth>
+              <EditPage editType="User" />
             </RequireAuth>
           }
         />
