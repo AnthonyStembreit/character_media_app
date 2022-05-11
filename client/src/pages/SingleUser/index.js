@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import { Link, useLocation, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import API from '../../utils/API';
@@ -7,16 +7,13 @@ import './user.css'
 
 export default function SingleUser() {
     const state = useSelector(state => state);
-    console.log(state.user)
     let { username } = useParams()
     const [viewUser, setViewUser] = useState()
     const [interactionText, setInteractionText] = useState("Edit")
     const [activeProfileSection, setActiveProfileSection] = useState("Bio")
     const [showMsgForm, setShowMsgForm] = useState(false)
-    let location = useLocation();
     useEffect(() => {
         const retrieveUser = async (username) => {
-            console.log(state.user.username , username)
             if (state.user.username === username) {
                 setViewUser(state.user)
             } else {
@@ -36,7 +33,6 @@ export default function SingleUser() {
     }, [])
     const interactBtnHandler= (e)=>{
         e.preventDefault(); 
-        console.log(e.target.innerText)
         e.target.innerText === "Message"?
         showMsgForm?
         setShowMsgForm(false)

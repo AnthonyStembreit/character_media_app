@@ -22,7 +22,6 @@ import CharacterForm from './components/CharacterForm/index.js';
 function RequireAuth({ children }) {
   const state = useSelector(state => state);
   let auth = state.auth
-  console.log(auth)
   let location = useLocation();
 
   if (!auth) {

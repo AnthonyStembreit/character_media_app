@@ -20,9 +20,7 @@ export default function Auth() {
             }
 
             const axiosres = await API.login(creds)
-            console.log(axiosres)
             if (axiosres.status === 200) {
-                console.log("hit")
                 dispatch({
                     type: LOGIN,
                     payload: axiosres.data

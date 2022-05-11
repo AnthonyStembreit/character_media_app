@@ -17,7 +17,7 @@ export default function Layout() {
                 type: LOGOUT
             })
         } else {
-            console.log("something went wrong!")
+            alert("something went wrong!")
         }
     }
     useEffect(() => {

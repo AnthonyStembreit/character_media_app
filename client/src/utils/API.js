@@ -24,7 +24,6 @@ const API = {
   login: async (creds) => {
     try {
       const res = await axios.post(`/api/login`, creds)
-      console.log(res)
       return res
     }
     catch (error) {
@@ -35,7 +34,6 @@ const API = {
   check_status: async () => {
     try {
       const res = await axios.get("/api/user_data")
-      console.log(res)
       return res
     }
     catch (error) {
@@ -45,7 +43,6 @@ const API = {
   send_email: async (email) => {
     try {
       const res = await axios.post(`/api/user/forgot-password`, email)
-      console.log(res)
       return res
     }
     catch (error) {
@@ -55,7 +52,6 @@ const API = {
   validate_token: async (token) => {
     try {
       const res = await axios.post(`/api/user/validate-token`, token)
-      console.log(res)
       return res
     }
     catch (error) {
@@ -65,7 +61,6 @@ const API = {
   update_password: async (creds) => {
     try {
       const res = await axios.post(`/api/user/update-password`, creds)
-      console.log(res)
       return res
     }
     catch (error) {

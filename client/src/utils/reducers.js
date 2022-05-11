@@ -1,17 +1,36 @@
 import {
     LOGIN,
     LOGOUT,
-    SIGN_UP
+    SIGN_UP,
+    CHANGE_ERROR_MSG
 } from "./actions";
 
 const initialState = {
     auth: false,
+    errorMessage: "",
+    singleCharacter: false,
+    //{
+    //      firstName: "Jean Luc",
+    //      lastName: "Picard",
+    //      age: 45,
+    //      franchise: "Star Trek",
+    //      description: "" ,
+    //}
     user: {
         // id: 2,
         // username: "test",
         // img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbBpAnjzhX3OtbT_voeJHVpalKyECOyNOLA&usqp=CAU",
         // bio: "Consequat anim officia ipsum consectetur commodo. Commodo aute et et cupidatat. Irure voluptate cillum culpa ullamco quis ex magna consectetur. Minim consequat id Lorem incididunt elit veniam sint cupidatat duis enim eu pariatur anim. Mollit adipisicing dolore velit cupidatat proident ad nostrud laborum commodo do esse. Exercitation velit elit aliqua enim.",
-        // characters: [], 
+        // characters: [
+        //     {
+        //         firstName: "Jean Luc",
+        //         lastName: "Picard",
+        //         age: 45,
+        //         franchise: "Star Trek",
+        //         description: "" ,
+        //         conversations: []
+        //     }
+        // ],
         // conversations:[
         //     {
         //         users: [{ id: 1, img: "https://i.pinimg.com/474x/f1/d9/e1/f1d9e1e814bf8804b9ebd97c42675a0d.jpg", username: "andybvb" }],
@@ -28,12 +47,10 @@ const initialState = {
 }
 
 export const reducers = (state = initialState, action) => {
-   console.log(action)
     switch (action.type) {
         case LOGIN:
-            
+
             if (action.payload) {
-                //action.userData[0]
                 return {
                     ...state,
                     auth: true,
@@ -45,7 +62,6 @@ export const reducers = (state = initialState, action) => {
                     ...state,
                     auth: true,
                     user: action.payload
-                    //action.userData
                 }
             }
 
@@ -58,6 +74,11 @@ export const reducers = (state = initialState, action) => {
             return {
                 ...state,
                 auth: true
+            }
+        case CHANGE_ERROR_MSG:
+            return {
+                ...state,
+                errorMessage: action.payload
             }
         default:
             return state

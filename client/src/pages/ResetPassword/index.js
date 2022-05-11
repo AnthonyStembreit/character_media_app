@@ -1,12 +1,9 @@
 import { React, useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import API from '../../utils/API';
 
 export default function ResetPassword() {
-    const state = useSelector(state => state);
     const [validToken, setValidToken] = useState(false)
-    console.log(state.auth)
     let paramArr = window.location.href.split('?token=')[1].split('&email=');
     let params = {
         token: decodeURIComponent(paramArr[0]),
@@ -14,7 +11,6 @@ export default function ResetPassword() {
     };
     useEffect(() => {
         const validateToken = async () => {
-            console.log(params)
             let res = await API.validate_token(params)
 
             if (res.data.showForm === true) {
@@ -29,7 +25,6 @@ export default function ResetPassword() {
         const confirmPass = document.getElementById("confirmPassword").value.trim()
         if (newPass && confirmPass) {
             if (newPass === confirmPass) {
-                console.log(newPass, params.email)
                 let user = {
                     email: params.email,
                     token: params.token,
@@ -38,6 +33,7 @@ export default function ResetPassword() {
                const res = await API.update_password(user)
                     if(res.status === 200){
                         alert("password has been changed")
+                        window.location.replace("/login")
                     }
             } else {
                 alert("Passwords must match!")
