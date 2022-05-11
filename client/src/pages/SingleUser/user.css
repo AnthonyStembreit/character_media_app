@@ -179,6 +179,13 @@
     border-radius: 10px;
     border: none;
 }
+.profile-btn a{
+    font-size: 25px;
+    background-color: rgb(85, 85, 85);
+    color: rgb(234, 232, 232);
+    font-weight: 600;
+    text-decoration: none;
+}
 /* character section specific */
 #characters{
     position: relative;
