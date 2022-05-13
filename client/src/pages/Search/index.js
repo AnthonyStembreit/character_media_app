@@ -1,10 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import API from '../../utils/API';
 import "./search.css";
 export default function Search() {
-    const state = useSelector(state => state);
-    console.log(state.auth)
     const searchUsers = async (searched) => {
         const { username, img} = API.get_one_user(searched)
         //is this enough or should I create a user card?? 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-// axios.defaults.proxy = "http://localhost:3001"
+axios.defaults.proxy = "http://localhost:3001"
 const API = {
   signup: async (creds) => {
     try {
@@ -24,7 +24,6 @@ const API = {
   login: async (creds) => {
     try {
       const res = await axios.post(`/api/login`, creds)
-      console.log(res)
       return res
     }
     catch (error) {
@@ -34,8 +33,34 @@ const API = {
 
   check_status: async () => {
     try {
-      const res = await axios.post(`/api/user_data`)
-      console.log(res)
+      const res = await axios.get("/api/user_data")
+      return res
+    }
+    catch (error) {
+      console.log(error)
+    }
+  },
+  send_email: async (email) => {
+    try {
+      const res = await axios.post(`/api/user/forgot-password`, email)
+      return res
+    }
+    catch (error) {
+      console.log(error)
+    }
+  },
+  validate_token: async (token) => {
+    try {
+      const res = await axios.post(`/api/user/validate-token`, token)
+      return res
+    }
+    catch (error) {
+      console.log(error)
+    }
+  },
+  update_password: async (creds) => {
+    try {
+      const res = await axios.post(`/api/user/update-password`, creds)
       return res
     }
     catch (error) {

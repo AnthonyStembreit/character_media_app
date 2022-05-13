@@ -39,16 +39,14 @@ router.get("/api/logout", function (req, res) {
 });
 router.get("/api/user_data", function (req, res) {
   if (!req.user) {
-    res.json({});
+    res.status(404).json({});
   } else {
-    res.json({
-      email: req.user.email,
-      name: req.user.name
-    });
+    res.json(req.user);
   }
 });
 
 router.post("/api/user/forgot-password", async function (req, res) {
+  console.log( req.body.email)
   const user = await User.findOne({
     where: {
       email: req.body.email
@@ -130,7 +128,7 @@ router.post("/api/user/validate-token", async function (req, res) {
 });
 //updates the user with the new password
 router.post('/api/user/update-password', async function (req, res) {
-  let user = req.body.userRecord
+  let user = req.body
   //checks to make sure the token has not expired
   let record = await ResetToken.findOne({
       where: {

@@ -15,7 +15,7 @@ export default function Auth() {
         e.preventDefault();
         if (loginFormStatus) {
             const creds = {
-                email: document.getElementById("email").value.trim(),
+                username: document.getElementById("email").value.trim(),
                 password: document.getElementById("password").value.trim()
             }
 

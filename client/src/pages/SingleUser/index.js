@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import API from '../../utils/API';
@@ -6,7 +7,6 @@ import './user.css'
 
 export default function SingleUser() {
     const state = useSelector(state => state);
-    console.log(state.user)
     let { username } = useParams()
     const [viewUser, setViewUser] = useState()
     const [interactionText, setInteractionText] = useState("Edit")
@@ -14,13 +14,13 @@ export default function SingleUser() {
     const [showMsgForm, setShowMsgForm] = useState(false)
     useEffect(() => {
         const retrieveUser = async (username) => {
-            console.log(state.user.username , username)
             if (state.user.username === username) {
                 setViewUser(state.user)
             } else {
+                //there is no back end route for this to hit yet 
                 let res = await API.get_one_user(username)
                 if (res.status === 200) {
-                    setViewUser(res)
+                    setViewUser(res.data)
                     setInteractionText("Message")
                 }
             }
@@ -29,14 +29,15 @@ export default function SingleUser() {
         //uncomment to see public profile
         // setViewUser({ id: 1, username: "andybvb", img: "https://i.pinimg.com/474x/f1/d9/e1/f1d9e1e814bf8804b9ebd97c42675a0d.jpg", bio: "lead singer of Legacy Black", characters: [] })
         // setInteractionText("Message")
-        //TODO when message is hit and you are messaging someone for the first time use modal on this page
+        //TODO when you already have a conversation with someone message takes you to the message board
     }, [])
     const interactBtnHandler= (e)=>{
         e.preventDefault(); 
+        e.target.innerText === "Message"?
         showMsgForm?
         setShowMsgForm(false)
         :  setShowMsgForm(true)
-
+        : window.location.replace(`/edit/${state.user.id}`);
     }
     const firstMessageFormHandler = (e)=>{
         e.preventDefault(); 
@@ -47,7 +48,7 @@ export default function SingleUser() {
         //call axios here to create new message
         //alert msg has been 'sent'
         document.getElementById("firstMsgInput").value =""
-        interactBtnHandler(e)
+        setShowMsgForm(false)
     }
     return (
         <main id="user-profile-containter">
@@ -60,7 +61,7 @@ export default function SingleUser() {
                 </section>
                 {interactionText === "Message" ? <div className={!showMsgForm?"hidden": "modal"} id="firstMessageModal">
                     <div className="innerModalContainer">
-                        <button className="closeModal" onClick={(e) => { interactBtnHandler(e)}}>X</button>
+                        <button className="closeModal" onClick={(e) => {setShowMsgForm(false)}}>X</button>
                         <div id="thisUser">         
                             <img src={viewUser.img} />
                             <h2>@{viewUser.username}</h2>
@@ -87,9 +88,9 @@ export default function SingleUser() {
                     <section className="profile-section" id="characters">
                         <h3>Characters</h3>
                         {interactionText === "Edit" ? <>
-                            <button className="profile-btn">Create +</button>
-                            {viewUser.characters.length ? <div>here are your characters!</div> : <p>You have not made any characters yet!</p>}
-                        </> : <> {viewUser.characters.length ? <div>here are your characters!</div> : <p>This user has not made any characters yet!</p>}</>
+                            <button className="profile-btn"><Link to="/character-create">Create +</Link></button>
+                            {viewUser.characters?.length ? <div>here are your characters!</div> : <p>You have not made any characters yet!</p>}
+                        </> : <> {viewUser.characters?.length ? <div>here are your characters!</div> : <p>This user has not made any characters yet!</p>}</>
                         }
                     </section>
                 }

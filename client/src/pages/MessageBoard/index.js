@@ -6,21 +6,16 @@ import Message from "../../components/Message";
 
 export default function MessageBoard() {
     const state = useSelector(state => state);
-    console.log(state.auth)
     //might want to make this a global state in redux
-    const [activeConversation, setActiveConversation] = useState(state.user.conversations[0])
+    const conversations = state.user.conversations?state.user.conversations:[]
+    const [activeConversation, setActiveConversation] = useState(conversations)
     const handleMessage = async (e) => {
         e.preventDefault();
         let message = e.target.previousSibling.value
         console.log(message, activeConversation.users[0].id, state.user.id)
         document.getElementById("usersMsg").value = ""
-        //console.log(state.user.id)
-        //TODO find a way to figure out reciever's user id
         //then call axios here
     }
-    useEffect(() => {
-        //call axios here to retrieve users conversations
-    }, [])
     const changeMessagesPresented = (newConversation) => setActiveConversation(newConversation)
 
     return (
@@ -34,8 +29,8 @@ export default function MessageBoard() {
                     </select>
                 </div>
                 {/* future dev set up a way to search messages here */}
-                {/*map Conversation components here -10 at first then 'load all' button)*/}
-                {state.user.conversations.map(conversation => {
+                {/*map Conversation components here 10 at first then 'load all' button)*/}
+                {state.user.conversations?.map(conversation => {
                     return <Conversation users={conversation.users}
                         id={conversation.id}
                         activeid={activeConversation.id}
@@ -45,7 +40,7 @@ export default function MessageBoard() {
             <main>
                 <div id="current-messages">
                     {/*map Message components here */}
-                    {activeConversation.messages.map(message =>{
+                    {activeConversation.messages?.map(message =>{
                         return <Message user={message.user} message={message.message} createdAt={message.createdAt}/>
                     })}
                 </div>
