@@ -11,7 +11,7 @@ This application is currently id development and has not been deployed. Stay Tun
  * [Contributers](#contributers)
 
 ## Description
-Full-Stack Social Media Application designed to allow Users to create Characters and send Messages as those Characters in order to create (consensual) role-playing scenarios for DnD, fan-fiction, other LARPing game, and more. 
+Full-Stack Social Media Application designed to allow Users to create Characters and send Messages as those Characters in order to create (consensual) role-playing scenarios for DnD, fan-fiction, other LARPing games, and more. 
                
 ## Tech
 * React
