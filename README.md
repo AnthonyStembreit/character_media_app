@@ -1,7 +1,7 @@
 # character_media_app
 
 ## Deployed
-This application is currently id development and has not been deployed. Stay Tuned for more Updates! 
+This application is currently id development and although it has been deployed [here](https://character-media-app.herokuapp.com/) it is not ready for use yet folks! Stay Tuned for more Updates! 
 
 
 
