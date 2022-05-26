@@ -1,5 +1,5 @@
 import axios from 'axios';
-axios.defaults.proxy = "http://localhost:3001"
+// axios.defaults.proxy = "http://localhost:3001"
 const API = {
   signup: async (creds) => {
     try {
