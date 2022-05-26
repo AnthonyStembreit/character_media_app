@@ -23,7 +23,8 @@ export default function Layout() {
     useEffect(() => {
         let verifyUser = async () => {
             let res = await API.check_status()
-            if (res?.status === 200) {
+            console.log(res)
+            if (res?.status === 200 && res?.data !== {} ) {
                 dispatch({
                     type: LOGIN,
                     payload: res.data

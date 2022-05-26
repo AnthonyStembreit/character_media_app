@@ -38,11 +38,11 @@ router.get("/api/logout", function (req, res) {
   res.redirect("/");
 });
 router.get("/api/user_data", function (req, res) {
-  console.log(req.user)
   if (!req.user) {
     res.status(404).json({});
-  } 
+  } else {
     res.json(req.user);
+  }
 });
 
 router.post("/api/user/forgot-password", async function (req, res) {
