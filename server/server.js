@@ -12,6 +12,7 @@ const sequelize = require('./config/connection/config');
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
 
 // We need to use sessions to keep track of our user's login status
 app.use(session({ secret: process.env.SECRET, resave: true, saveUninitialized: true }));
