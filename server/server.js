@@ -13,6 +13,13 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// We need to use sessions to keep track of our user's login status
+app.use(session({ secret: process.env.SECRET, resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use("/api", require('./routes'));
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, '../client/build')));
 
@@ -20,13 +27,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
   });
 }
-// We need to use sessions to keep track of our user's login status
-app.use(session({ secret: process.env.SECRET, resave: true, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.use(require('./routes'));
-
 app.listen(PORT, () => {
    sequelize.sync({ force: false }).then(() => {
     console.log(`App listening on port ${PORT}!`);

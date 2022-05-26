@@ -18,7 +18,7 @@ const transport = nodemailer.createTransport({
   }
 });
 
-router.post("/api/signup", async (req, res) => {
+router.post("/signup", async (req, res) => {
   try {
     let newUser = await User.findOrCreate({
       where: { email: req.body.email },
@@ -29,15 +29,15 @@ router.post("/api/signup", async (req, res) => {
     console.log(error)
   }
 })
-router.post("/api/login", passport.authenticate("local"), function (req, res) {
+router.post("/login", passport.authenticate("local"), function (req, res) {
   res.json(req.user);
 });
 
-router.get("/api/logout", function (req, res) {
+router.get("/logout", function (req, res) {
   req.logout();
   res.redirect("/");
 });
-router.get("/api/user_data", function (req, res) {
+router.get("/user_data", function (req, res) {
   if (!req.user) {
     res.status(404).json({});
   } else {
@@ -45,7 +45,7 @@ router.get("/api/user_data", function (req, res) {
   }
 });
 
-router.post("/api/user/forgot-password", async function (req, res) {
+router.post("/user/forgot-password", async function (req, res) {
   console.log( req.body.email)
   const user = await User.findOne({
     where: {
@@ -99,7 +99,7 @@ router.post("/api/user/forgot-password", async function (req, res) {
 
   }
 });
-router.post("/api/user/validate-token", async function (req, res) {
+router.post("/user/validate-token", async function (req, res) {
   await ResetToken.destroy({
       where: {
           expiration: { [Op.lt]: Sequelize.fn('CURDATE') },
@@ -127,7 +127,7 @@ router.post("/api/user/validate-token", async function (req, res) {
   })
 });
 //updates the user with the new password
-router.post('/api/user/update-password', async function (req, res) {
+router.post('/user/update-password', async function (req, res) {
   let user = req.body
   //checks to make sure the token has not expired
   let record = await ResetToken.findOne({
