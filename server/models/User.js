@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
-
+const friendRequestSchema = require("./FriendRequest")
 const userSchema = new Schema(
     {
         username: {
@@ -18,7 +18,27 @@ const userSchema = new Schema(
             required: true,
             minlength: 8,
             maxLength: 35,
-        }
+        },
+        characters: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Character',
+            },
+        ],
+        friends: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User',
+            },
+        ],
+        blocked: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User',
+            },
+        ],
+        sent_requests:[friendRequestSchema],
+        pending_requests:[friendRequestSchema]
     },
     {
         toJSON: {

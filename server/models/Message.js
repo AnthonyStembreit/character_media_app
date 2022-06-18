@@ -1,43 +1,28 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection/config');
+const { Schema, model } = require('mongoose');
 
-class Message extends Model {}
-
-Message.init(
-    {
-        
-          body: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-              len: [1],
-            },
-          },
-          sender_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-              model: 'user',
-              key: 'id',
-      },
-          },
-          recipient_id:{
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-              model: 'user',
-              key: 'id',
-            },
-          }
-        // has read?
+const messageSchema = new Schema(
+  {
+    body: {
+      type: String,
+      required: true
     },
-    {
-        // hooks
-        sequelize,
-        timestamps: true,
-        freezeTableName: true,
-        modelName: 'message'
+    sent_by: {
+      type: Schema.Types.ObjectId,
+      ref: 'UserCharacterMap',
+      required: true
+    },
+    createdAt: {
+      type: Date,
+      default:  Date.now()
     }
-)
+  },
+  {
+    toJSON: {
+      getters: true
+    },
+  }
+);
+
+const Message = model('Message', messageSchema);
 
 module.exports = Message;

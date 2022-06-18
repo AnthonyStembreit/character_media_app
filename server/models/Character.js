@@ -1,66 +1,77 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection/config');
+const { Schema, model } = require('mongoose');
 
-class Character extends Model {}
-
-Character.init(
+const characterSchema = new Schema(
     {
-        
-        characterName:{
-            type: DataTypes.STRING,
-            allowNull: false,
+        first_name: {
+            type: String,
+            minLength: 1,
+            maxLength: 100,
+            required: true
         },
-        characterAge:{
-            type: DataTypes.INTEGER,
-            allowNull: false,
+        last_name: {
+            type: String,
+            minLength: 1,
+            maxLength: 100,
         },
-        characterClass:{
-            type: DataTypes.STRING,
-            allowNull: true
+        presented_name: {
+            type: String,
+            minLength: 1,
+            maxLength: 100,
+            required: true
         },
-        characterRace:{
-            type: DataTypes.STRING,
-            allowNull: true
-
+        img_url: {
+            type: String,
+            minLength: 10
         },
-        firstName:{
-            type: DataTypes.STRING,
-            allowNull: true
+        looking_for: {
+            type: String,
+            minLength: 5
         },
-        lastName:{
-            type: DataTypes.STRING,
-            allowNull: true
+        description: {
+            type: String,
+            minLength: 5
         },
-        franchise:{
-            type: DataTypes.STRING,
-            allowNull: true
-
+        age: {
+            type: Number
         },
-        era:{
-            type: DataTypes.STRING,
-            allowNull: true
-
+        background_story: {
+            type: String,
+            minLength: 5
         },
-        img_url:{
-            type: DataTypes.STRING,
-            allowNull: true
-
+        campaign_name: {
+            type: String
         },
-        description:{
-            type: DataTypes.TEXT,
-            allowNull: true
-
+        franchise: {
+            type: Schema.Types.ObjectId,
+            ref: 'Franchise',
         },
-        // adult?
-        over18:{
-            type: DataTypes.BOOLEAN,
-            defaultValue: false
+        specific_era: {
+            type: Schema.Types.ObjectId,
+            ref: 'Era',
+        },
+        conversations: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Conversation',
+            }
+        ],
+        user:{
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+        },
+        private: {
+            type: Boolean,
+            required: true,
+            default: false
         }
     },
     {
-        // hooks
-        sequelize,
+        toJSON: {
+            getters: true
+        },
     }
-)
+);
+
+const Character = model('Character', characterSchema);
 
 module.exports = Character;
