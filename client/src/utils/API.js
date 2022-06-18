@@ -1,9 +1,9 @@
 import axios from 'axios';
-// axios.defaults.proxy = "http://localhost:3001"
+axios.defaults.proxy = "http://localhost:3001"
 const API = {
   signup: async (creds) => {
     try {
-      const res = await axios.post(`/api/signup`, creds)
+      const res = await axios.post(`/api/user/signup`, creds)
       return res
     }
     catch (error) {
@@ -13,7 +13,7 @@ const API = {
 
   logout: async () => {
     try {
-      const res = await axios.get(`/api/logout`)
+      const res = await axios.get(`/api/auth/logout`)
       return res
     }
     catch (error) {
@@ -23,7 +23,7 @@ const API = {
 
   login: async (creds) => {
     try {
-      const res = await axios.post(`/api/login`, creds)
+      const res = await axios.post(`/api/auth/login`, creds)
       return res
     }
     catch (error) {
@@ -33,7 +33,7 @@ const API = {
 
   check_status: async () => {
     try {
-      const res = await axios.get("/api/user_data")
+      const res = await axios.get("/api/user/data")
       return res
     }
     catch (error) {
@@ -42,7 +42,7 @@ const API = {
   },
   send_email: async (email) => {
     try {
-      const res = await axios.post(`/api/user/forgot-password`, email)
+      const res = await axios.post(`/api/auth/forgot-password`, email)
       return res
     }
     catch (error) {
@@ -51,7 +51,7 @@ const API = {
   },
   validate_token: async (token) => {
     try {
-      const res = await axios.post(`/api/user/validate-token`, token)
+      const res = await axios.post(`/api/auth/validate-token`, token)
       return res
     }
     catch (error) {
@@ -60,7 +60,7 @@ const API = {
   },
   update_password: async (creds) => {
     try {
-      const res = await axios.post(`/api/user/update-password`, creds)
+      const res = await axios.post(`/api/auth/update-password`, creds)
       return res
     }
     catch (error) {
@@ -69,7 +69,7 @@ const API = {
   },
   get_one_user: async (username) => {
     try {
-      const res = await axios.post(`/api/users/`, username)
+      const res = await axios.post(`/api/user/`, username)
       console.log(res)
       return res
     }

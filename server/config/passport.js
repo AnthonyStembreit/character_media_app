@@ -14,15 +14,17 @@ passport.use(new LocalStrategy(
             where: {
                 username: username
             }
-        }).then(function (dbUser) {
+        }).then(async function (dbUser) {
+            let answer = await dbUser.isCorrectPassword(password)
             // If there's no user with the given username
             if (!dbUser) {
                 return done(null, false, {
                     message: "Incorrect username."
                 });
             }
+            
             // If there is a user with the given username, but the password the user gives us is incorrect
-            else if (!dbUser.validPassword(password)) {
+            else if (!answer) {
                 return done(null, false, {
                     message: "Incorrect password."
                 });

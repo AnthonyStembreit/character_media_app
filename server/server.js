@@ -7,7 +7,7 @@ require('dotenv').config();
 
 
 const PORT = process.env.PORT || 3001;
-const sequelize = require('./config/connection/config');
+const db = require('./config/connection/config');
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -27,8 +27,8 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
   });
 }
-app.listen(PORT, () => {
-   sequelize.sync({ force: false }).then(() => {
-    console.log(`App listening on port ${PORT}!`);
+db.once('open', () => {
+  app.listen(PORT, () => {
+    console.log(`API server running on port ${PORT}!`);
   });
-})
+});

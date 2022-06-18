@@ -24,7 +24,7 @@ export default function Layout() {
         let verifyUser = async () => {
             let res = await API.check_status()
             console.log(res)
-            if (res?.status === 200 && res?.data !== {} ) {
+            if (res?.status === 200 && res?.data.username !== undefined ) {
                 dispatch({
                     type: LOGIN,
                     payload: res.data

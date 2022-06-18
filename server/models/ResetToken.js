@@ -1,26 +1,36 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection/config');
+const { Schema, model } = require('mongoose');
 
-class ResetToken extends Model {}
-ResetToken.init({
-    email: {
-        type: DataTypes.STRING(250),
-    },
-    expiration: {
-        type: DataTypes.DATE,
-    },
-    token: {
-        type: DataTypes.STRING(250),
-    },
-    used: {
-        type: DataTypes.INTEGER(11),
-        allowNull: false,
-        default: 0
-    },
-},
+
+
+const resetTokenSchema = new Schema(
     {
-    sequelize,
-    modelName: 'ResetToken'
+        email: {
+            type: String,
+            minlength: 1,
+            maxlength: 280
+        },
+        expiration: {
+            type: Date,
+            expires: 7200, 
+            default: Date.now()
+        },
+        token: {
+            type: String,
+        },
+        used: {
+            type: Number,
+            allowNull: false,
+            default: 0
+        }
+    },
+    {
+        toJSON: {
+            getters: true
+        },
+        id: true,
     }
 );
-module.exports =ResetToken;
+
+const ResetToken = model('ResetToken', resetTokenSchema);
+
+module.exports = ResetToken;
