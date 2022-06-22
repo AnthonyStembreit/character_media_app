@@ -20,10 +20,7 @@ router.get("/data", function (req, res) {
     if (!req.user) {
         res.json("no user here");
     } else {
-        res.json({
-            email: req.user.email,
-            username: req.user.username
-        });
+        res.json(req.user);
     }
 });
 
