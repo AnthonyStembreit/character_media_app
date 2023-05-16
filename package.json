@@ -1,6 +1,9 @@
 {
   "name": "character_media_app",
   "version": "1.0.0",
+  "engines": {
+    "node": "18.x"
+  },
   "description": "Full-Stack SQL React app utilizing axios through RESTful APIs methodology",
   "main": "index.js",
   "scripts": {
